@@ -15,7 +15,7 @@ It is not a code generator and not a chatbot wrapper. It is the layer between "I
 **Claude Code plugin** — recommended:
 
 ```bash
-claude marketplace add Knight1598/plain2dev
+claude plugin marketplace add Knight1598/plain2dev
 ```
 
 ```bash
@@ -27,6 +27,8 @@ claude plugin install plain2dev@plain2dev
 ```bash
 npx github:Knight1598/plain2dev --target . --agent codex
 ```
+
+> **Windows PowerShell:** run `npx.cmd` instead of `npx`. PowerShell refuses to run the `npx.ps1` script that ships with Node under the default execution policy. Using `npx.cmd` sidesteps it without weakening any security setting.
 
 **From a downloaded release:**
 

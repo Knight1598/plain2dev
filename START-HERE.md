@@ -3,7 +3,7 @@
 ## ทางที่เร็วที่สุด — Claude Code
 
 ```bash
-claude marketplace add Knight1598/plain2dev
+claude plugin marketplace add Knight1598/plain2dev
 ```
 
 ```bash
@@ -19,6 +19,8 @@ claude plugin install plain2dev@plain2dev
 ```bash
 npx github:Knight1598/plain2dev --target . --agent codex
 ```
+
+> **Windows PowerShell:** ให้พิมพ์ `npx.cmd` แทน `npx` เพราะ PowerShell ปฏิเสธการรันไฟล์ `npx.ps1` ที่มากับ Node ตามนโยบายความปลอดภัยเริ่มต้นของ Windows การใช้ `npx.cmd` เลี่ยงปัญหาได้โดยไม่ต้องลดความปลอดภัยของเครื่อง
 
 เปลี่ยน `codex` เป็น `claude`, `both` หรือ `generic` ตาม AI ที่ใช้ ต้องมี Node.js 18 ขึ้นไป
 

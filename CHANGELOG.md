@@ -16,7 +16,7 @@ First release intended to be installed directly from GitHub.
 - `--uninstall`, which removes the engine and keeps project memory; `--purge-memory` to delete memory as well, permitted only when no adapter remains.
 - `--reconcile`, an explicit opt-in that replaces or deletes managed files you edited locally. Conflicts still stop an ordinary run.
 - `--version` and a real `--help`.
-- Claude Code plugin packaging: `.claude-plugin/plugin.json`, and a self-hosted `marketplace.json`, so the package installs with `claude marketplace add Knight1598/plain2dev`.
+- Claude Code plugin packaging: `.claude-plugin/plugin.json`, and a self-hosted `marketplace.json`, so the package installs with `claude plugin marketplace add Knight1598/plain2dev`.
 - `npx github:Knight1598/plain2dev --target . --agent codex` as an install path with no download step.
 - A behavioral eval suite under `evals/`, runnable with `claude plugin eval .` against a no-plugin baseline.
 - A fixed requirement identifier scheme — `REQ-0001 r1` — defined in `SKILL.md` and used by the templates, so identifiers stay stable across sessions and agents.

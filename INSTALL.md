@@ -5,7 +5,7 @@ Read the destination project's existing instructions first. Take the target dire
 ## Claude Code plugin
 
 ```bash
-claude marketplace add Knight1598/plain2dev
+claude plugin marketplace add Knight1598/plain2dev
 ```
 
 ```bash
@@ -19,6 +19,8 @@ The same two steps work as `/plugin marketplace add Knight1598/plain2dev` and `/
 ```bash
 npx github:Knight1598/plain2dev --target . --agent codex
 ```
+
+> **Windows PowerShell:** run `npx.cmd` instead of `npx`. PowerShell refuses to run the `npx.ps1` script that ships with Node under the default execution policy. Using `npx.cmd` sidesteps it without weakening any security setting.
 
 From an extracted release, run the installer directly:
 

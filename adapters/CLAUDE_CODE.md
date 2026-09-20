@@ -2,7 +2,7 @@
 
 Two supported paths.
 
-**Plugin (user-level):** `claude marketplace add Knight1598/plain2dev`, then `claude plugin install plain2dev@plain2dev`. Gives you `/plain2dev` in every project. The plugin ships the skill; project memory is still written into whichever project you are working in.
+**Plugin (user-level):** `claude plugin marketplace add Knight1598/plain2dev`, then `claude plugin install plain2dev@plain2dev`. Gives you `/plain2dev` in every project. The plugin ships the skill; project memory is still written into whichever project you are working in.
 
 **Project-local:** install to `.claude/skills/plain2dev/` with `node scripts/install.mjs --target . --agent claude`. Use this when the skill should travel with the repository and be shared through version control.
 
