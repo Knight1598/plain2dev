@@ -9,4 +9,4 @@ Extract actor, trigger, action, result, constraints and exceptions. Preserve exa
 | SUGGESTED | Optional extension | Exclude until accepted |
 | UNKNOWN | Missing information | Resolve when blocking |
 
-For changes identify the old rule, new rule, preserved behavior and affected interfaces. Current source establishes existing behavior, not the user's desired future behavior. Requirements have an ID, revision and draft/confirmed/superseded state. Do not rewrite history or treat an unanswered summary as confirmation.
+For changes identify the old rule, new rule, preserved behavior and affected interfaces. Current source establishes existing behavior, not the user's desired future behavior. Requirements have an ID, revision and draft/confirmed/superseded state, numbered as `REQ-0001 r1` per the scheme in SKILL.md. Do not rewrite history or treat an unanswered summary as confirmation.

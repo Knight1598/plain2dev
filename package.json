@@ -1,9 +1,42 @@
 {
   "name": "plain2dev",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.2.0",
   "type": "module",
-  "description": "Plain-language requirements and project context skill package",
-  "engines": { "node": ">=22" },
-  "scripts": { "test": "node --test", "check": "node scripts/validate.mjs" }
+  "description": "Turn plain-language Thai or English software requests into scoped, testable developer instructions",
+  "keywords": [
+    "claude-code",
+    "codex",
+    "skill",
+    "requirements",
+    "specification",
+    "thai"
+  ],
+  "homepage": "https://github.com/Knight1598/plain2dev#readme",
+  "bugs": "https://github.com/Knight1598/plain2dev/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Knight1598/plain2dev.git"
+  },
+  "author": "IAHCARUS",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "bin": {
+    "plain2dev": "scripts/install.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "skills/",
+    "scripts/",
+    "adapters/",
+    ".claude-plugin/",
+    "INSTALL.md",
+    "LICENSE.md",
+    "README.md",
+    "README.th.md"
+  ],
+  "scripts": {
+    "test": "node --test",
+    "check": "node scripts/validate.mjs"
+  }
 }

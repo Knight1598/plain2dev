@@ -1,0 +1,46 @@
+name: Bug report
+description: The installer or the skill did something other than what the documentation says
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        For a security issue, do not open a public issue — see [SECURITY.md](../../blob/main/SECURITY.md).
+  - type: dropdown
+    id: area
+    attributes:
+      label: What went wrong
+      options:
+        - Installer (install, upgrade, check, uninstall)
+        - Skill behavior (the AI did the wrong thing)
+        - Documentation is wrong or misleading
+        - Plugin or marketplace install
+    validations: { required: true }
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected, and what happened instead
+      description: Paste the exact command and its full output where relevant.
+    validations: { required: true }
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+    validations: { required: true }
+  - type: input
+    id: version
+    attributes:
+      label: Plain2Dev version
+      description: "`node scripts/install.mjs --version`, or the `version` field in `.plain2dev/install.json`"
+    validations: { required: true }
+  - type: input
+    id: env
+    attributes:
+      label: Node version, OS, and the agent you use
+      placeholder: Node 22.11, Windows 11, Claude Code
+    validations: { required: true }
+  - type: textarea
+    id: transcript
+    attributes:
+      label: For skill behavior, the relevant part of the transcript
+      description: Redact anything private. Model and date help — behavior differs between models.

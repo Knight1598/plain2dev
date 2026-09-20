@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Commercial licence and pricing
+    url: https://github.com/Knight1598/plain2dev/blob/main/LICENSE.md
+    about: Terms for commercial use, and how to ask about a licence
+  - name: Security vulnerability
+    url: https://github.com/Knight1598/plain2dev/security/advisories/new
+    about: Report privately, not as a public issue

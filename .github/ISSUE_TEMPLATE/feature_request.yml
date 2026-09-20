@@ -1,0 +1,23 @@
+name: Change proposal
+description: Propose a change to the engine, installer or an adapter
+labels: [proposal]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: The problem, as it happened to you
+      description: A concrete case where the current behavior produced a bad result. Not a feature name.
+    validations: { required: true }
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What you propose
+    validations: { required: true }
+  - type: textarea
+    id: cost
+    attributes:
+      label: What it costs
+      description: |
+        Engine text is loaded into the model's context every time the skill runs, so additions are paid
+        for by every user on every run. Say what this would displace, or why it earns its length.
+    validations: { required: true }

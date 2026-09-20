@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "plain2dev",
+  "displayName": "Plain2Dev",
+  "version": "0.2.0",
+  "description": "Translate everyday Thai or English software requests into scoped, testable developer instructions, clarify only the ambiguity that changes the result, and reuse verified project context.",
+  "author": { "name": "IAHCARUS", "url": "https://github.com/Knight1598" },
+  "homepage": "https://github.com/Knight1598/plain2dev",
+  "repository": "https://github.com/Knight1598/plain2dev",
+  "license": "LicenseRef-Plain2Dev-Commercial",
+  "keywords": ["requirements", "specification", "thai", "product", "context", "requirements-engineering"]
+}

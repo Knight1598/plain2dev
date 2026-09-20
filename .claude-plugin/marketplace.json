@@ -1,0 +1,14 @@
+{
+  "name": "plain2dev",
+  "owner": { "name": "IAHCARUS", "url": "https://github.com/Knight1598" },
+  "description": "Plain2Dev — plain-language requests into testable developer instructions.",
+  "plugins": [
+    {
+      "name": "plain2dev",
+      "source": "./",
+      "description": "Translate everyday Thai or English software requests into scoped, testable developer instructions, clarify only the ambiguity that changes the result, and reuse verified project context.",
+      "license": "LicenseRef-Plain2Dev-Commercial",
+      "keywords": ["requirements", "specification", "thai"]
+    }
+  ]
+}

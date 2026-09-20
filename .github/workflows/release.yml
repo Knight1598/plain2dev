@@ -1,0 +1,69 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag to package, e.g. v0.2.0'
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Test before packaging
+        run: |
+          node --test
+          node scripts/validate.mjs
+
+      - name: Check the tag matches package.json
+        run: |
+          TAG="${{ github.event.inputs.tag || github.ref_name }}"
+          VERSION="v$(node -p "require('./package.json').version")"
+          if [ "$TAG" != "$VERSION" ]; then
+            echo "Tag $TAG does not match package.json $VERSION"
+            exit 1
+          fi
+          echo "VERSION=${VERSION#v}" >> "$GITHUB_ENV"
+
+      - name: Build the archive from tracked files only
+        run: |
+          NAME="Plain2Dev-v${VERSION}"
+          mkdir -p "dist/${NAME}"
+          git archive HEAD | tar -x -C "dist/${NAME}"
+          rm -rf "dist/${NAME}/.github"
+          (cd dist && zip -rq "${NAME}.zip" "${NAME}")
+          (cd dist && sha256sum "${NAME}.zip" > "${NAME}.zip.sha256")
+          cat "dist/${NAME}.zip.sha256"
+
+      - name: Verify the archive installs
+        run: |
+          NAME="Plain2Dev-v${VERSION}"
+          mkdir -p /tmp/verify
+          node "dist/${NAME}/scripts/install.mjs" --target /tmp/verify --agent both
+          node "dist/${NAME}/scripts/install.mjs" --target /tmp/verify --check
+
+      - name: Publish the release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/Plain2Dev-v${{ env.VERSION }}.zip
+            dist/Plain2Dev-v${{ env.VERSION }}.zip.sha256
+          body: |
+            See [CHANGELOG.md](https://github.com/Knight1598/plain2dev/blob/main/CHANGELOG.md) for what changed.
+
+            Verify the download before extracting:
+
+            ```sh
+            sha256sum -c Plain2Dev-v${{ env.VERSION }}.zip.sha256
+            ```

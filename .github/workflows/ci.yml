@@ -1,0 +1,71 @@
+name: CI
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Node ${{ matrix.node }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        node: ['18', '20', '22', '24']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Installer tests
+        run: node --test
+      - name: Skill metadata and link check
+        run: node scripts/validate.mjs
+
+  manifests:
+    name: Plugin manifests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Parse plugin and marketplace manifests
+        run: |
+          node -e "
+            const fs = require('fs');
+            const plugin = JSON.parse(fs.readFileSync('.claude-plugin/plugin.json', 'utf8'));
+            const market = JSON.parse(fs.readFileSync('.claude-plugin/marketplace.json', 'utf8'));
+            const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+            if (plugin.version !== pkg.version) throw new Error('plugin.json version ' + plugin.version + ' != package.json ' + pkg.version);
+            if (!market.plugins.some(p => p.name === plugin.name)) throw new Error('marketplace.json does not list ' + plugin.name);
+            if (!fs.existsSync('skills/' + plugin.name + '/SKILL.md')) throw new Error('missing skills/' + plugin.name + '/SKILL.md');
+            console.log('manifests consistent at version ' + pkg.version);
+          "
+
+  install-smoke:
+    name: Install, upgrade and uninstall a real project
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install both adapters
+        run: |
+          mkdir -p /tmp/demo
+          printf 'keep me\n' > /tmp/demo/AGENTS.md
+          node scripts/install.mjs --target /tmp/demo --agent both
+          node scripts/install.mjs --target /tmp/demo --check
+      - name: Reinstall is idempotent and leaves AGENTS.md alone
+        run: |
+          node scripts/install.mjs --target /tmp/demo --agent both
+          test "$(cat /tmp/demo/AGENTS.md)" = 'keep me'
+      - name: Uninstall keeps memory
+        run: |
+          node scripts/install.mjs --target /tmp/demo --uninstall
+          test ! -d /tmp/demo/.agents
+          test -f /tmp/demo/.plain2dev/project/MAP.md
