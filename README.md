@@ -4,6 +4,18 @@
 
 [ไทย](README.th.md) · [Install](INSTALL.md) · [Changelog](CHANGELOG.md) · [License](LICENSE.md)
 
+> ### v0.2.0 is a preview, and it is looking for testers
+>
+> Installing, upgrading and removing it are covered — 25 tests, and CI on four Node versions across Linux and Windows. What is **not** measured yet is how much it improves what the AI actually does. The eval suite under [`evals/`](evals/) is written but has never been run, and no token or cost claim appears anywhere in this package.
+>
+> If you try it, three answers are worth more to me than a bug report:
+>
+> 1. **Did it ask the questions that mattered**, or did it waste a round on something obvious?
+> 2. **Where did it misunderstand you?** The exact sentence you typed is the useful part.
+> 3. **Was it annoying?** A skill that interrupts too much gets uninstalled long before it gets judged on accuracy.
+>
+> [Open an issue](https://github.com/Knight1598/plain2dev/issues) — a few sentences in Thai or English is plenty. Free to try, forever; see [the licence](LICENSE.md) for when a paid one is needed.
+
 Plain2Dev is a skill package for coding AI. It reads a request in Thai or English, asks only the questions that would change the result, shows you what it understood before it builds anything, and compiles a testable developer instruction — then remembers the decision in the project so the next session doesn't start from zero.
 
 It is not a code generator and not a chatbot wrapper. It is the layer between "I want the manager to give a reason when rejecting" and a spec with acceptance criteria that survives review.
